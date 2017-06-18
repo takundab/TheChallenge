@@ -15,7 +15,7 @@ class Jobs
             $this->jobarray[trim($value[0])] = trim($value[1]);
         }
         if ($this->checkDependencies($this->jobarray) === true) { //check if array has the same value for key and value
-            return "Jobs can’t depend on themselves.";
+            return "Jobs can not depend on themselves.";
         }
         foreach ($this->jobarray as $key => $value) {  //check if key value pair exists (if exists - run jobSequen ELSE put key in array)
             if (empty($value)) {
@@ -33,13 +33,13 @@ class Jobs
     {
         $position = 0;
         if (in_array($key, $this->jobOutput) && in_array($value, $this->jobOutput)) { //check circular dependencies
-            die("jobs can not have circular dependencies");
+            die("Jobs can not have circular dependencies");
         } elseif (in_array($value, $this->jobOutput)) { //check if value exists inside the array then put key after the value if exists
             $position = array_search($value, $this->jobOutput) + 1;
             $inserted = array($key);
             array_splice($this->jobOutput, $position, 0, $inserted);
         } elseif (in_array($key, $this->jobOutput)) {  //check if key exists inside the array then put value before the value if exists
-            $position = array_search($key, $this->jobOutput) ;
+            $position = array_search($key, $this->jobOutput);
             $inserted = array($value);
             array_splice($this->jobOutput, $position, 0, $inserted);
         } else {
