@@ -56,9 +56,11 @@ class Jobs
         }
     }
 }
-$n = new Jobs;
-$job = "a => b
+$test = new Jobs;
+$job = "a =>
 b => c
-c => c
-d => a";
-echo $n->getJobs($job);
+c => f
+d => a
+e => b
+f =>";
+echo $test->getJobs($job);
